@@ -14,6 +14,9 @@ class VenueCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var openingHoursLabel: UILabel!
+    @IBOutlet weak var waitTimeLabel: RoundedLabel!
+    @IBOutlet weak var phoneLabel: RoundedLabel!
+    @IBOutlet weak var offlineLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

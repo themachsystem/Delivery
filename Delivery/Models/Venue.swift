@@ -28,7 +28,7 @@ class Venue: NSObject {
     /**
      * Phone number
      */
-    var phone: String!
+    var phone: String?
     
     var cardImageUrl: String!
     var thumbnailImageUrl: String!
@@ -63,6 +63,36 @@ class Venue: NSObject {
      * Returns true if delivery option is available for this venue.
      */
     var deliveryAvailable = false
+    
+    /**
+     * Returns distance from current location to venue in kilometres
+     */
+    var distance: Double = 0
+    
+    /**
+     * The minimum order cost allowed (if any)
+     */
+    var minimumOrder: Int = 0
+    
+    /**
+     * Business description
+     */
+    var descriptionText: String?
+    
+    /**
+     * The venue's street address
+     */
+    var street: String?
+    
+    /**
+     * The venue's city address
+     */
+    var city: String?
+    
+    /**
+     * The venue's website
+     */
+    var website: String?
     
     init(id: Int, name: String) {
         self.id = id

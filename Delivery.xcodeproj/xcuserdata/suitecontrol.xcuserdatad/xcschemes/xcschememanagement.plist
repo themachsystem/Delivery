@@ -7,7 +7,25 @@
 		<key>Delivery.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1ADD2D0424B6B0460095F27B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1ADD2D1A24B6B0490095F27B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1ADD2D2524B6B0490095F27B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

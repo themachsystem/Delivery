@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (5.2.1)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - SVProgressHUD
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 1829cef5602378606001d17055a0995ed77cd6d0
+PODFILE CHECKSUM: 711cf282ca1efe70cf9ebb231c88c14cb4bd57c4
 
 COCOAPODS: 1.8.4

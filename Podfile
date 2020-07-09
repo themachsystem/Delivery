@@ -7,6 +7,8 @@ target 'Delivery' do
 
   # Pods for Delivery
 pod 'Alamofire', '~> 5.2'
+pod 'SVProgressHUD'
+
 
   target 'DeliveryTests' do
     inherit! :search_paths

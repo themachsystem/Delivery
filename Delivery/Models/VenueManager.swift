@@ -53,6 +53,9 @@ class VenueManager: NSObject {
         let venue = Venue(id: id as! Int, name: name)
         if let contact = dictionary["contact"] as? [String:String], let phone = contact["phone"] {
             venue.phone = phone
+            if let website = contact["website"] {
+                venue.website = website
+            }
         }
         let cardImageUrl = dictionary["image_card_url"] as? String
         let thumbnailImageUrl = dictionary["image_thumb_url"] as? String
@@ -60,6 +63,12 @@ class VenueManager: NSObject {
         let status = dictionary["status"] as? String
         let group = dictionary["group"] as? String
         let waitTime = dictionary["wait_time_min"] as! Int
+        let distance = dictionary["distance_km"] as! Double
+        let descriptionText = dictionary["description"] as? String
+        if let location = dictionary["location"] as? [String:Any], let address = location["address"] as? [String:Any], let street = address["street1"] as? String, let city = address["city"] as? String {
+            venue.street = street
+            venue.city = city
+        }
         if let orderTypes = dictionary["order_types"] as? [String], orderTypes.contains("DELIVER_ADDRESS") {
             venue.deliveryAvailable = true
         }
@@ -73,13 +82,15 @@ class VenueManager: NSObject {
         if let closeTime = dictionary["close_time"] as? String {
             venue.closeTime = dateFormatter.date(from: closeTime)
         }
-        
+
         venue.cardImageUrl = cardImageUrl
         venue.thumbnailImageUrl = thumbnailImageUrl
         venue.bannerImageUrl = bannerImageUrl
         venue.status = status
         venue.group = group
         venue.waitTime = waitTime
+        venue.distance = distance
+        venue.descriptionText = descriptionText
         return venue
     }
 }

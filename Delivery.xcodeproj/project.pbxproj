@@ -19,6 +19,10 @@
 		1ADD2D4424B6C9050095F27B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D4324B6C9050095F27B /* LocationManager.swift */; };
 		1ADD2D4724B6D70D0095F27B /* VenueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D4624B6D70D0095F27B /* VenueViewModel.swift */; };
 		1ADD2D4924B6DD640095F27B /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D4824B6DD640095F27B /* VenueCell.swift */; };
+		1ADD2D4B24B705B30095F27B /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D4A24B705B30095F27B /* RoundedLabel.swift */; };
+		1ADD2D5824B7195C0095F27B /* VenueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D5724B7195C0095F27B /* VenueDetailViewController.swift */; };
+		1ADD2D5A24B71B7F0095F27B /* VenueHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D5924B71B7F0095F27B /* VenueHeaderView.swift */; };
+		1ADD2D5C24B7201F0095F27B /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADD2D5B24B7201F0095F27B /* RoundedImageView.swift */; };
 		45DCFD293D651A197EE73769 /* Pods_DeliveryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 809F9D71253D2A8D0B1E5034 /* Pods_DeliveryTests.framework */; };
 		720891AB481A1C0D1FF55871 /* Pods_Delivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2128CE257E83CB8A3E368F2B /* Pods_Delivery.framework */; };
 		D3966A9EF679264C4E6BF6F2 /* Pods_Delivery_DeliveryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5CBCA4039304F8D9C922FA /* Pods_Delivery_DeliveryUITests.framework */; };
@@ -60,6 +64,10 @@
 		1ADD2D4324B6C9050095F27B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1ADD2D4624B6D70D0095F27B /* VenueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueViewModel.swift; sourceTree = "<group>"; };
 		1ADD2D4824B6DD640095F27B /* VenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
+		1ADD2D4A24B705B30095F27B /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
+		1ADD2D5724B7195C0095F27B /* VenueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetailViewController.swift; sourceTree = "<group>"; };
+		1ADD2D5924B71B7F0095F27B /* VenueHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueHeaderView.swift; sourceTree = "<group>"; };
+		1ADD2D5B24B7201F0095F27B /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
 		2128CE257E83CB8A3E368F2B /* Pods_Delivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Delivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFC851B87A859E686109FBA /* Pods-DeliveryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeliveryTests.debug.xcconfig"; path = "Target Support Files/Pods-DeliveryTests/Pods-DeliveryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4113A0DC8BF48A821BA7A032 /* Pods-Delivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Delivery.release.xcconfig"; path = "Target Support Files/Pods-Delivery/Pods-Delivery.release.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				1ADD2D4824B6DD640095F27B /* VenueCell.swift */,
+				1ADD2D5924B71B7F0095F27B /* VenueHeaderView.swift */,
+				1ADD2D4A24B705B30095F27B /* RoundedLabel.swift */,
+				1ADD2D5B24B7201F0095F27B /* RoundedImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				1ADD2D3F24B6C55B0095F27B /* VenueListController.swift */,
+				1ADD2D5724B7195C0095F27B /* VenueDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +289,7 @@
 				TargetAttributes = {
 					1ADD2D0424B6B0460095F27B = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 					1ADD2D1A24B6B0490095F27B = {
 						CreatedOnToolsVersion = 11.5;
@@ -443,12 +456,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ADD2D5824B7195C0095F27B /* VenueDetailViewController.swift in Sources */,
+				1ADD2D5A24B71B7F0095F27B /* VenueHeaderView.swift in Sources */,
 				1ADD2D3E24B6B9800095F27B /* Venue.swift in Sources */,
 				1ADD2D4024B6C55B0095F27B /* VenueListController.swift in Sources */,
 				1ADD2D4424B6C9050095F27B /* LocationManager.swift in Sources */,
 				1ADD2D4924B6DD640095F27B /* VenueCell.swift in Sources */,
 				1ADD2D0924B6B0460095F27B /* AppDelegate.swift in Sources */,
 				1ADD2D4724B6D70D0095F27B /* VenueViewModel.swift in Sources */,
+				1ADD2D5C24B7201F0095F27B /* RoundedImageView.swift in Sources */,
+				1ADD2D4B24B705B30095F27B /* RoundedLabel.swift in Sources */,
 				1ADD2D4224B6C69E0095F27B /* VenueManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +640,7 @@
 			baseConfigurationReference = 5DCF2843B59A1D6FCA248BEC /* Pods-Delivery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HW9ST7AR42;
 				INFOPLIST_FILE = Delivery/Info.plist;
@@ -633,6 +651,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alvis.Delivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -643,6 +662,7 @@
 			baseConfigurationReference = 4113A0DC8BF48A821BA7A032 /* Pods-Delivery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HW9ST7AR42;
 				INFOPLIST_FILE = Delivery/Info.plist;

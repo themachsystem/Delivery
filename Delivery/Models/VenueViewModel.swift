@@ -37,7 +37,7 @@ class VenueViewModel: NSObject {
     /**
      * Phone number
      */
-    var phone: String {
+    var phone: String? {
         return venue.phone
     }
     
@@ -122,6 +122,44 @@ class VenueViewModel: NSObject {
 //        case .comingSoon:
 //            return "COMING SOON"
 //        }
+    }
+    
+    /**
+     * Returns distance from current location to venue in kilometres
+     */
+    var distance: String {
+        return String(format: "%.1f", venue.distance)
+    }
+    
+    /**
+     * The minimum order cost allowed (if any)
+     */
+    var minimumOrder: Int {
+        return venue.minimumOrder
+    }
+
+    /**
+     * Business description
+     */
+    var descriptionText: String? {
+        return venue.descriptionText
+    }
+    
+    /**
+     * The venue's full address
+     */
+    var address: String? {
+        guard let street = venue.street, let city = venue.city else {
+            return nil
+        }
+        return street + ", " + city
+    }
+
+    /**
+     * The venue's website
+     */
+    var website: String? {
+        return venue.website
     }
     
     //MARK: - Private

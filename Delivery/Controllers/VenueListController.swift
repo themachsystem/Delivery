@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class VenueListController: UITableViewController, LocationUpdater {
     private var location: Location?
@@ -41,7 +42,32 @@ class VenueListController: UITableViewController, LocationUpdater {
         cell.nameLabel.text = venueViewModel.name
         cell.groupLabel.text = venueViewModel.group
         cell.openingHoursLabel.text = venueViewModel.openingHours
-        venueViewModel.loadBannerImage { image, error in
+        cell.waitTimeLabel.text = "\(venueViewModel.waitTime) MIN"
+        cell.waitTimeLabel.isHidden = venueViewModel.waitTime == 0
+        cell.distanceLabel.text = "\(venueViewModel.distance)km away"
+        if let phone = venueViewModel.phone {
+            cell.phoneLabel.text = "Phone: \(phone)"
+            cell.phoneLabel.isHidden = false
+        }
+        else {
+            cell.phoneLabel.text = ""
+            cell.phoneLabel.isHidden = true
+        }
+        // If venue status is open, hide offline view and show wait time label and phone label.
+        // Otherwise, if it is closed, show offline view and hide wait time and phone labels.
+        if venueViewModel.status == "OPEN" {
+            cell.offlineLabel.isHidden = true
+            cell.waitTimeLabel.isHidden = false
+            cell.phoneLabel.isHidden = false
+        }
+        // COMING SOON or CLOSED
+        else {
+            cell.offlineLabel.text = venueViewModel.status
+            cell.offlineLabel.isHidden = false
+            cell.waitTimeLabel.isHidden = true
+            cell.phoneLabel.isHidden = true
+        }
+        venueViewModel.loadCardImage { image, error in
             DispatchQueue.main.async {
                 cell.bannerImageView.image = image
             }
@@ -54,50 +80,20 @@ class VenueListController: UITableViewController, LocationUpdater {
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowVenueDetail" {
+            let cell = sender as! VenueCell
+            let indexPath = tableView.indexPath(for: cell)
+            let venue = venues[indexPath!.row]
+            let controller = segue.destination as! VenueDetailViewController
+            controller.venue = VenueViewModel(venue: venue)
+        }
     }
-    */
+    
 
     //MARK: - LocationUpdater
     func locationDidUpdate(currentLocation: Location) {
@@ -112,7 +108,9 @@ class VenueListController: UITableViewController, LocationUpdater {
     }
     
     private func fetchNearbyVenues() {
+        SVProgressHUD.show()
         venueManager.downloadNearbyVenues(lat: location!.latitude, long: location!.longitude, completionHandler: {[weak self] success, error in
+            SVProgressHUD.dismiss()
             if success {
                 self?.tableView.reloadData()
             }

@@ -7,15 +7,23 @@
 //
 
 import UIKit
+@IBDesignable
 
 class RoundedLabel: UILabel {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
+    /**
+    * If true, the border corner will be rounded.
     */
-
+    @IBInspectable var rounded:Bool = false {
+        didSet {
+            if rounded {
+                layer.cornerRadius = 10.0
+            }
+        }
+    }
+    
+    override func prepareForInterfaceBuilder() {
+        if rounded {
+            layer.cornerRadius = 10.0
+        }
+    }
 }

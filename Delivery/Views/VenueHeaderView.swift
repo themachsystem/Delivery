@@ -9,7 +9,9 @@
 import UIKit
 
 class VenueHeaderView: UIView {
-
+    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -17,5 +19,9 @@ class VenueHeaderView: UIView {
         // Drawing code
     }
     */
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 
 }
