@@ -12,7 +12,7 @@ import SVProgressHUD
 class VenueListController: UITableViewController, LocationUpdater {
     private var location: Location?
     private let venueManager = VenueManager.shared
-    private let locationManager = LocationManager()
+    private lazy var locationManager = LocationManager()
     private var venues: [Venue] {
         return venueManager.venues
     }
@@ -23,10 +23,6 @@ class VenueListController: UITableViewController, LocationUpdater {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     // MARK: - Table view data source
@@ -42,17 +38,7 @@ class VenueListController: UITableViewController, LocationUpdater {
         cell.nameLabel.text = venueViewModel.name
         cell.groupLabel.text = venueViewModel.group
         cell.openingHoursLabel.text = venueViewModel.openingHours
-        cell.waitTimeLabel.text = "\(venueViewModel.waitTime) MIN"
-        cell.waitTimeLabel.isHidden = venueViewModel.waitTime == 0
         cell.distanceLabel.text = "\(venueViewModel.distance)km away"
-        if let phone = venueViewModel.phone {
-            cell.phoneLabel.text = "Phone: \(phone)"
-            cell.phoneLabel.isHidden = false
-        }
-        else {
-            cell.phoneLabel.text = ""
-            cell.phoneLabel.isHidden = true
-        }
         // If venue status is open, hide offline view and show wait time label and phone label.
         // Otherwise, if it is closed, show offline view and hide wait time and phone labels.
         if venueViewModel.status == "OPEN" {
@@ -65,6 +51,16 @@ class VenueListController: UITableViewController, LocationUpdater {
             cell.offlineLabel.text = venueViewModel.status
             cell.offlineLabel.isHidden = false
             cell.waitTimeLabel.isHidden = true
+            cell.phoneLabel.isHidden = true
+        }
+        cell.waitTimeLabel.text = "\(venueViewModel.waitTime) MIN"
+        cell.waitTimeLabel.isHidden = venueViewModel.waitTime == 0
+        if let phone = venueViewModel.phone {
+            cell.phoneLabel.text = "Phone: \(phone)"
+            cell.phoneLabel.isHidden = false
+        }
+        else {
+            cell.phoneLabel.text = ""
             cell.phoneLabel.isHidden = true
         }
         venueViewModel.loadCardImage { image, error in
@@ -99,23 +95,33 @@ class VenueListController: UITableViewController, LocationUpdater {
     func locationDidUpdate(currentLocation: Location) {
         location = currentLocation
         if let locationName = location?.name {
-            self.navigationItem.title = "Places near \(locationName)"
+            navigationItem.title = "Places near \(locationName)"
         }
-        // Only call this once when app starts
-        DispatchQueue.once { [weak self] in
-            self?.fetchNearbyVenues()
-        }
+        fetchNearbyVenues()
     }
     
+    func locationDidFailToUpdate(error: String) {
+        navigationItem.title = "No address found"
+        SVProgressHUD.showError(withStatus: error)
+    }
+    
+    /**
+     * Downloads nearby venues and reload data on completion
+     */
     private func fetchNearbyVenues() {
+        guard location != nil else {
+            SVProgressHUD.showError(withStatus: "Current location not available.")
+            navigationItem.title = "No address found"
+            return
+        }
         SVProgressHUD.show()
         venueManager.downloadNearbyVenues(lat: location!.latitude, long: location!.longitude, completionHandler: {[weak self] success, error in
             SVProgressHUD.dismiss()
             if success {
                 self?.tableView.reloadData()
             }
-            else {
-                print(error)
+            else if error != nil {
+                SVProgressHUD.showError(withStatus: error)
             }
         })
     }

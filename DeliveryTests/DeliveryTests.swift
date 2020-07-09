@@ -22,30 +22,15 @@ class DeliveryTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testCurrentLocation() {
-        var locationManager = CLLocationManager()
-        var currentLoc: CLLocation!
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-        CLLocationManager.authorizationStatus() == .authorizedAlways) {
-           currentLoc = locationManager.location
-           print(currentLoc.coordinate.latitude)
-           print(currentLoc.coordinate.longitude)
-        }
-        
-    }
     
-    func testDownloadVenues() {
+    func testDownloadVenuesNearBexley() {
         let promise = expectation(description: "Status code: 200")
-        AF.request("https://services.boppl.me/api/v1/api/venues?user-lat=-33.9525&user-lon=151.1227").responseJSON { response in
-            switch response.result {
-            case .success(let json):
-                if let res = json as? [Any]{
-                    
-                }
+        VenueManager.shared.downloadNearbyVenues(lat: -33.9525, long: 151.1227) { success, error in
+            if success {
                 promise.fulfill()
-            case .failure(let error):
-                XCTFail("Error: \(error)")
+            }
+            else if error != nil {
+                XCTFail("Error: \(error!)")
             }
         }
         wait(for: [promise], timeout: 10)

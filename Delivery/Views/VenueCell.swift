@@ -9,7 +9,7 @@
 import UIKit
 
 class VenueCell: UITableViewCell {
-    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var bannerImageView: RoundedImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!

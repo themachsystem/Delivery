@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class RoundedImageView: UIImageView {
 
+    /**
+     * The radius to use when drawing rounded corners for the layer’s background
+     */
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet{
             
@@ -18,6 +21,9 @@ class RoundedImageView: UIImageView {
         }
     }
     
+    /**
+     * The width of the layer’s border.
+     */
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet{
             
@@ -26,12 +32,18 @@ class RoundedImageView: UIImageView {
         
     }
     
+    /**
+     * The color of the layer’s border.
+     */
     @IBInspectable var borderColor: UIColor = UIColor.gray {
         didSet{
             layer.borderColor = borderColor.cgColor
         }
     }
     
+    /**
+     * Image color when using UIImage.RenderingMode
+     */
     @IBInspectable var imageColor: UIColor = UIColor.gray {
         didSet{
             self.image = self.image!.withRenderingMode(.alwaysTemplate)
