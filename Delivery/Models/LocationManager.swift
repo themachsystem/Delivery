@@ -51,7 +51,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     //MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways || status == .authorizedWhenInUse {
-//            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         }
     }
     
