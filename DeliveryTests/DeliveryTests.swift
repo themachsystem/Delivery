@@ -16,13 +16,19 @@ class DeliveryTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+        if let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainNavigationController") as? UINavigationController {
+            sut = navController.topViewController as? VenueListController
+        }
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func testSUT_CanBeInstantiated() {
+        XCTAssertNotNil(sut)
+    }
+
     func testDownloadVenuesNearBexley() {
         let promise = expectation(description: "Status code: 200")
         VenueManager.shared.downloadNearbyVenues(lat: -33.9525, long: 151.1227) { success, error in

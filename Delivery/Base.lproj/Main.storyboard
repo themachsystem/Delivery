@@ -360,7 +360,7 @@
         <!--Navigation Controller-->
         <scene sceneID="xwx-SN-5W3">
             <objects>
-                <navigationController id="O62-xx-RtH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" id="O62-xx-RtH" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8br-OE-lfg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
